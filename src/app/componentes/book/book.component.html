@@ -1,0 +1,69 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="titulo">{{accion | uppercase}} LIBROS</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="mb-2">
+                <input placeholder="Id libro" type="text" id="buscar" [(ngModel)]="buscar">
+                <button (click)="buscarLibro()" id="buscar" class="btn btn-success" type="button">
+                    <i class="fas fa-search"></i>&nbsp;     Buscar</button>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-center">{{accion | uppercase}} LIBRO</h5>
+                    <form [formGroup]="form" (ngSubmit)="guardarLibro()">
+
+                        <div class="input-group input-group-lg mb-3">
+                            <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre libro">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <input formControlName="autor" type="text" class="form-control" placeholder="Autor">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <input formControlName="editorial" type="text" class="form-control" placeholder="Editorial">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-database"></i>&nbsp; Aceptar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6" id="listado">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo text-center">LISTADO DE TARJETAS</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Autor</th>
+                                <th>Editorial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let libro of listaLibro">
+                                <td>{{libro.bookId}}</td>
+                                <td>{{libro.nombre}}</td>
+                                <td>{{libro.autor}}</td>
+                                <td>{{libro.editorial}}</td>
+                                <td><i (click)="editarLibro(libro)" class="fas fa-edit text-info"></i></td>
+                                <td><i (click)="eliminarLibro(libro.bookId)" class="fas fa-trash-alt text-danger"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
